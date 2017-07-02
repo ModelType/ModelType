@@ -1,0 +1,27 @@
+---
+Name: ModelType Test
+
+Heads:
+  Java: |
+    // This is the head for the java file
+    package com.modeltype.Test;
+  MongooseTS: |
+    // This is the head for the mongoose file
+    import * as crypto from "crypto";
+
+Models:
+
+  User:
+    Schema:
+      Name:
+        First: string
+        Last: string
+      Created: date
+      LastLogin: date
+      Email: string
+      Password: string
+
+  Store:
+    Schema:
+      Name: string
+      Address: string
