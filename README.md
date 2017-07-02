@@ -63,9 +63,8 @@ The Parser is responsible for the final code. It takes the raw document, passes 
 
 ### "I've built an awesome compiler for my language"
 
-Share it! You can either publish a contrib module, or submit a pull-request to add it to the main package. If you're an individual, I'd recommend publishing a contrib module, as you'd retain ownership of your code and it would be bound by the GNU GPL v3. 
+Share it! You can either publish a contrib module, or submit a pull-request to add it to the main package.
 
-If you're a commercial entity, please contact me for licensing.
 
 ### "Can I use this at my company?"
 
@@ -75,7 +74,7 @@ Donation doesn't necessarily mean money though, helping out with the development
 
 ### "I want to include ModelType in my own package/software"
 
-Go right ahead! Just be sure to abide by the conditions in the GNU GPL v3 License.
+Go right ahead! Just be sure to abide by the conditions in the GNU AGPL v3 License.
 
 Is the license too restrictive for you? Contact me and we'll work out a license and terms that makes everyone happy!
 
