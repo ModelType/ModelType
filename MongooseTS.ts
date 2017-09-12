@@ -80,6 +80,7 @@ class DataInterface extends GenEngine.Engine {
         this.types.declareType(TSEngine.ObjectType());
         this.types.declareType(TSEngine.ExpandedBaseType());
         this.types.declareType(TSEngine.CustomType());
+        this.types.declareType(TSEngine.ReferenceType());
     }
     process(name, data) {
         var out = "export namespace _Data { export interface "+name+" {";
@@ -108,6 +109,7 @@ class ModelInterface extends GenEngine.Engine {
         this.types.declareType(TSEngine.ObjectType());
         this.types.declareType(TSEngine.ExpandedBaseType());
         this.types.declareType(TSEngine.CustomType());
+        this.types.declareType(TSEngine.ReferenceType());
     }
     process(name, data) {
         var out = "export namespace _Model { export interface "+name+" extends _Data."+name+", mongoose.Document {";

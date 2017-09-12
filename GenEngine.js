@@ -1,4 +1,3 @@
-"use strict";
 /**
  * Created by Omar on 4/26/2017.
  * Copyright (C) 2017  Omar Zouai <omar@omarzouai.com>
@@ -16,6 +15,7 @@
  You should have received a copy of the GNU Affero General Public License
  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+"use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
         ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||

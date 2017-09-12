@@ -1,6 +1,6 @@
 {
   "name": "modeltype",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Define great data models",
   "main": "index.js",
   "scripts": {
@@ -8,6 +8,13 @@
   },
   "author": "Omar Zouai <omar@omarzouai.com>",
   "license": "AGPL-3.0+",
+  "bugs":{
+    "url":"https://github.com/ModelType/ModelType/issues"
+  },
+  "repository": {
+    "type":"git",
+    "url":"https://github.com/ModelType/ModelType"
+  },
   "dependencies": {
     "yamljs": "^0.2.10"
   }

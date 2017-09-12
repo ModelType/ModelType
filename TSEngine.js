@@ -34,6 +34,11 @@ function BaseTypes() {
     return bs;
 }
 exports.BaseTypes = BaseTypes;
+function ReferenceType() {
+    var i = new CReferenceType();
+    return i;
+}
+exports.ReferenceType = ReferenceType;
 function ArrayType() {
     var i = new CArrayType();
     return i;
@@ -104,6 +109,7 @@ var CArrayType = (function (_super) {
         var innerTypes = [];
         for (var _i = 0, data_1 = data; _i < data_1.length; _i++) {
             var d = data_1[_i];
+            console.log(d);
             innerTypes.push(this.types.determineType(d));
         }
         out += innerTypes.join(",");
@@ -111,6 +117,27 @@ var CArrayType = (function (_super) {
         return this.nn(name, name + ":") + out;
     };
     return CArrayType;
+}(Engine.TypeDeterminer.TypeDefinition));
+var CReferenceType = (function (_super) {
+    __extends(CReferenceType, _super);
+    function CReferenceType() {
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.weight = 1000;
+        return _this;
+    }
+    CReferenceType.prototype.Validator = function (data) {
+        if (typeof data == "object" && !Array.isArray(data)) {
+            if (typeof data["___Reference"] != "undefined") {
+                return true;
+            }
+        }
+        return false;
+    };
+    CReferenceType.prototype.Parse = function (data, name) {
+        var out = "mongoose.Types.ObjectId | _Model." + data.___Reference;
+        return this.nn(name, name + ":") + out;
+    };
+    return CReferenceType;
 }(Engine.TypeDeterminer.TypeDefinition));
 var CObjectType = (function (_super) {
     __extends(CObjectType, _super);

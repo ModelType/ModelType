@@ -22,6 +22,12 @@ export function BaseTypes() {
     bs.pushPair("string", "string").pushPair("number", "number").pushPair("boolean", "boolean").pushPair("date", "Date").pushPair("void", "void").pushPair("ObjectId", "mongoose.Types.ObjectId");
     return bs;
 }
+
+export function ReferenceType() {
+    var i = new CReferenceType();
+    return i;
+}
+
 export function ArrayType() {
     var i = new CArrayType();
     return i;
@@ -77,10 +83,27 @@ class CArrayType extends Engine.TypeDeterminer.TypeDefinition {
         var out= "Array<";
         var innerTypes: Array<string> = [];
         for(var d of data) {
+            console.log(d);
             innerTypes.push(this.types.determineType(d));
         }
         out+=innerTypes.join(",");
         out+=">";
+        return this.nn(name, name+":")+out;
+    }
+}
+
+class CReferenceType extends Engine.TypeDeterminer.TypeDefinition {
+    weight = 1000;
+    Validator(data) {
+        if(typeof data == "object" && !Array.isArray(data)) {
+            if(typeof data["___Reference"] != "undefined") {
+                return true;
+            }
+        }
+        return false;
+    }
+    Parse(data, name) {
+        var out = `mongoose.Types.ObjectId | _Model.${data.___Reference}`;
         return this.nn(name, name+":")+out;
     }
 }

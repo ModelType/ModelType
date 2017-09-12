@@ -93,6 +93,7 @@ var DataInterface = (function (_super) {
         _this.types.declareType(TSEngine.ObjectType());
         _this.types.declareType(TSEngine.ExpandedBaseType());
         _this.types.declareType(TSEngine.CustomType());
+        _this.types.declareType(TSEngine.ReferenceType());
         return _this;
     }
     DataInterface.prototype.process = function (name, data) {
@@ -121,6 +122,7 @@ var ModelInterface = (function (_super) {
         _this.types.declareType(TSEngine.ObjectType());
         _this.types.declareType(TSEngine.ExpandedBaseType());
         _this.types.declareType(TSEngine.CustomType());
+        _this.types.declareType(TSEngine.ReferenceType());
         return _this;
     }
     ModelInterface.prototype.process = function (name, data) {

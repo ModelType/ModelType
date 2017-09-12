@@ -22,6 +22,12 @@ export function BaseTypes() {
     bs.pushPair("string", "String").pushPair("number", "Number").pushPair("boolean", "Boolean").pushPair("date", "Date").pushPair("void", "Void").pushPair("ObjectId", "mongoose.Schema.Types.ObjectId");
     return bs;
 }
+
+export function ReferenceType() {
+    var i = new CReferenceType();
+    return i;
+}
+
 export function ArrayType() {
     var i = new CArrayType();
     return i;
@@ -106,6 +112,22 @@ class CObjectType extends Engine.TypeDeterminer.TypeDefinition {
     }
 }
 
+class CReferenceType extends Engine.TypeDeterminer.TypeDefinition {
+    weight = 1000;
+    Validator(data) {
+        if(typeof data == "object" && !Array.isArray(data)) {
+            if(typeof data["___Reference"] != "undefined") {
+                return true;
+            }
+        }
+        return false;
+    }
+    Parse(data, name) {
+        var out = `{type: mongoose.Schema.Types.ObjectId, ref: "${data.___Reference}"}`;
+        return this.nn(name, name+":")+out;
+    }
+}
+
 class CFunctionType extends Engine.TypeDeterminer.TypeDefinition {
     weight =9998;
     Validator(data) {
@@ -163,6 +185,7 @@ export class MongooseSchema extends Engine.Engine {
         this.types.declareType(ObjectType());
         this.types.declareType(ExpandedBaseType());
         this.types.declareType(CustomType());
+        this.types.declareType(ReferenceType());
     }
     process(name, data) {
         var out = "var "+name+"Schema = new mongoose.Schema({";

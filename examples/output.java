@@ -1,5 +1,5 @@
-//#GeneratedOn:2017-07-02T17:32:58.943Z
-//#ETAG:33bcaab97e022742b408cbc92e24720d
+//#GeneratedOn:2017-09-12T03:28:24.870Z
+//#ETAG:69b13ea3f38d9206a74330b5f31e79c0
 // This is the head for the java file
 package com.modeltype.Test;
 
@@ -102,6 +102,26 @@ package com.modeltype.Test;
                         this.keyUpdated("Password", (Object) obj);
                     }
                     
+                public SubDoc_FavoriteStore getFavoriteStore() { 
+                    if(this.Instance_SubDoc_FavoriteStore == null) {
+                        this.Instance_SubDoc_FavoriteStore = new SubDoc_FavoriteStore(this, "FavoriteStore", (Document) this.doc.get("FavoriteStore")); 
+                    } 
+                    return this.Instance_SubDoc_FavoriteStore;
+                }
+            
+                public void setFavoriteStore(SubDoc_FavoriteStore obj) { }
+            
+                public class SubDoc_FavoriteStore extends SubDoc{ 
+                    SubDoc_FavoriteStore(ModelType_JavaClass parent, String name, Document doc) {
+                        super(parent, name, doc);
+                    }
+                    SubDoc_FavoriteStore(SubDoc parent, String name, Document doc) {
+                        super(parent, name, doc);
+                    }
+                   
+                }
+                protected SubDoc_FavoriteStore Instance_SubDoc_FavoriteStore;
+            
         }
         public static User castUser(Document doc) {
             if(Models_Singleton == null) Models_Singleton = new Models();
@@ -126,6 +146,8 @@ public class Store extends ModelType_JavaClass {
                         this.keyUpdated("Address", (Object) obj);
                     }
                     
+                public Document[] getUsers() { return (Document[]) this.doc.get("Users"); }
+            
         }
         public static Store castStore(Document doc) {
             if(Models_Singleton == null) Models_Singleton = new Models();

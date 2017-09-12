@@ -34,6 +34,11 @@ function BaseTypes() {
     return bs;
 }
 exports.BaseTypes = BaseTypes;
+function ReferenceType() {
+    var i = new CReferenceType();
+    return i;
+}
+exports.ReferenceType = ReferenceType;
 function ArrayType() {
     var i = new CArrayType();
     return i;
@@ -137,6 +142,27 @@ var CObjectType = (function (_super) {
     };
     return CObjectType;
 }(Engine.TypeDeterminer.TypeDefinition));
+var CReferenceType = (function (_super) {
+    __extends(CReferenceType, _super);
+    function CReferenceType() {
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.weight = 1000;
+        return _this;
+    }
+    CReferenceType.prototype.Validator = function (data) {
+        if (typeof data == "object" && !Array.isArray(data)) {
+            if (typeof data["___Reference"] != "undefined") {
+                return true;
+            }
+        }
+        return false;
+    };
+    CReferenceType.prototype.Parse = function (data, name) {
+        var out = "{type: mongoose.Schema.Types.ObjectId, ref: \"" + data.___Reference + "\"}";
+        return this.nn(name, name + ":") + out;
+    };
+    return CReferenceType;
+}(Engine.TypeDeterminer.TypeDefinition));
 var CFunctionType = (function (_super) {
     __extends(CFunctionType, _super);
     function CFunctionType() {
@@ -208,6 +234,7 @@ var MongooseSchema = (function (_super) {
         _this.types.declareType(ObjectType());
         _this.types.declareType(ExpandedBaseType());
         _this.types.declareType(CustomType());
+        _this.types.declareType(ReferenceType());
         return _this;
     }
     MongooseSchema.prototype.process = function (name, data) {

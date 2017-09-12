@@ -20,8 +20,13 @@ Models:
       LastLogin: date
       Email: string
       Password: string
+      FavoriteStore:
+        ___Reference: Store
 
   Store:
     Schema:
       Name: string
       Address: string
+      Users:
+        - Name: string
+          Hooray: string
